@@ -14,7 +14,7 @@ pipeline {
     stage('Push to JFrog Container Registry') {
       steps {
         script {
-          docker.withRegistry(env.JCR_URL, 'your-jcr-credentials-id') {
+          docker.withRegistry(env.JCR_URL, 'jcr') {
             // Push the Docker image to JFrog Container Registry
             docker.image("${env.JCR_URL}/${env.REPOSITORY_NAME}/${env.DOCKER_IMAGE_NAME}:latest").push('latest')
           }
