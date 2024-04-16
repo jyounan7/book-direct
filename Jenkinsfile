@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build Docker Image') {
       steps {
-        git 'https://github.com/younan7/book-direct.git'
+        git 'https://github.com/jyounan7/book-direct.git'
         script {
           docker.build("${env.JCR_URL}/${env.REPOSITORY_NAME}/${env.DOCKER_IMAGE_NAME}:latest")
         }
