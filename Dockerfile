@@ -1,14 +1,11 @@
-# Use a lightweight base image
-FROM alpine:latest
+# Use the official Nginx image as the base image
+FROM nginx:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy custom configuration file from the local host into the container
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy the application binary from the heptio-images repository
-COPY ./guestbook-ui /app
-
-# Expose the port the app runs on
+# Expose port 80 to allow incoming HTTP traffic
 EXPOSE 80
 
-# Command to run the application
-CMD ["./guestbook-ui"]
+# Define the default command to start Nginx when the container starts
+CMD ["nginx", "-g", "daemon off;"]
